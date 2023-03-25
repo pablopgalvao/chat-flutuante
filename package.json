@@ -1,0 +1,29 @@
+{
+  "name": "chat-flutuante",
+  "version": "1.0.0",
+  "description": "Esse é a versão flutuante do chatgpt utilizando a API do OPENAI",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "Pablo Galvao",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pablopgalvao/chat-flutuante.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pablopgalvao/chat-flutuante/issues"
+  },
+  "homepage": "https://github.com/pablopgalvao/chat-flutuante#readme",
+  "devDependencies": {
+    "electron": "^23.2.0"
+  }
+}
