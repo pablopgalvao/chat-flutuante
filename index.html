@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat Flutuante</title>
-    <link rel="stylesheet" href="jumpstart/css/dark.css">
+    <link rel="stylesheet" href="jumpstart/css/chat.css">
     <link rel="stylesheet" href="jumpstart/css/todo.css" />
     <link rel="stylesheet" href="jumpstart/css/modal.css">
     
-    <!--
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
@@ -20,10 +20,8 @@
       referrerpolicy="no-referrer"
 
     />
-    -->
     <script src="jumpstart/js/todo.js" defer></script>
     <script src="jumpstart/js/openai-api.js" defer></script>
-    <script src="jumpstart/js/modal.js" defer></script>
   </head>
   <body>
     <button class="modalbtn" onclick="document.getElementById('mdl').style.display='block'" style="width:auto;">CHAVE OPENAI</button>
@@ -35,27 +33,28 @@
           <span onclick="document.getElementById('mdl').style.display='none'" class="close" title="Close Modal">&#10006;</span>
         </div>
     
-        <div class="mdlcontainer">
+        <form id="mdlcontainer">
     
           <label><b>CHAVE SECRETA</b></label>
-          <input id="key" type="key" placeholder="Entre com a sua chave">
-          <button type="save" onclick="salvar()">Alterar</button>
+          <div class="chave">
+            <input id="key" name="key" type="password" placeholder="Entre com a sua chave" required>
+            <input class="modalbtn" type="submit" value="Alterar" />
+          </div>
+              <select id="engines">
+                <option value="text-davinci-003">text-davinci-003 ($.02 por 750 palavras)</option>
+                <option value="text-curie-001">text-curie-001 ($.002 por 750 palavras)</option>
+                <option value="text-babbage-001">text-babbage-001 ($.0005 por 750 palavras)</option>
+                <option value="text-ada-001">text-ada-001 ($.0004 por 750 palavras)</option>
+                <option value="code-davinci-002">code-davinci-002 (Atualmente GRATUITO)</option>
+              </select>
 
-        </div>
+
+        </form>
 
       </div>
     </div>
 
 <section>
-
-
-  <select id="engines">
-    <option value="text-davinci-003">text-davinci-003 ($.02 per 750 words)</option>
-    <option value="text-curie-001">text-curie-001 ($.002 per 750 words)</option>
-    <option value="text-babbage-001">text-babbage-001 ($.0005 per 750 words)</option>
-    <option value="text-ada-001">text-ada-001 ($.0004 per 750 words)</option>
-    <option value="code-davinci-002">code-davinci-002 (Currently FREE)</option>
-  </select>
 
   <span id="prompt" class="textarea" role="textbox" contenteditable></span>
 
