@@ -1,15 +1,27 @@
 //TODO 1: GET YOUR OPENAI API KEY from https://beta.openai.com/account/api-keys
-function salvar(){
-    var keyOpen = localStorage.info = document.getElementById("key").value;
-    console.log(keyOpen)
-}
+
+   // var keyOpen = localStorage.info = document.getElementById("key").value;
+   // console.log(keyOpen)
+    //alert(keyOpen)
+    //TODO 2a: RUN THE FOLLOWING COMMAND IN YOUR DEVELOPER CONSOLE FIRST:
+    const keyform = document.querySelector("#mdlcontainer");
+        keyform.addEventListener("submit", (e) => {
+            e.preventDefault();
+        
+            const keyinput = document.querySelector("#key");
+            localStorage.setItem("openAI", keyinput.value);
+        });
+        
+    const API_KEY = localStorage.getItem("openAI");
+
+    alert(API_KEY + "\n\n Cheguei aqui!")
+
 //TODO 2a: RUN THE FOLLOWING COMMAND IN YOUR DEVELOPER CONSOLE FIRST:
-           // localStorage.setItem("openAI", "keyOpen");
+//         localStorage.setItem("openAI", "YOUR_OPENAI_API_KEY");
 //const API_KEY = localStorage.getItem("openAI");
 
 //TODO 2b: OPTIONALLY, YOU CAN DELETE THE PREVIOUS LINE AND HARD-CODE YOUR API KEY WITH:
-//const API_KEY = salvar;
-console.log(salvar)
+//const API_KEY = "YOUR_OPENAI_API_KEY";
 
 const MIN_CHARS = 0;
 let promptSpan, charSpan;
@@ -44,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
         enginesList.value = localStorage.getItem(OPENAI_API_ENGINE);
     }
 
-    typeSentence("🤖 Hello, how can I help? 🤖", promptSpan, '', false, 100)
+    typeSentence("Olá, como posso ajudar?", promptSpan, '', false, 100)
         .then(afterTyping => promptSpan.innerHTML = "");
 
 });
@@ -59,7 +71,7 @@ Finally, it sets the inner text of "charSpan" to the number of characters entere
  */
 function countCharacters() {
     //Twitter character limit for reference
-    const MAX_COUNTER = 280;
+    const MAX_COUNTER = 2040;
 
     let numOfCharsEntered = promptSpan.innerText.length.toString();
     let spans = document.querySelectorAll("span[name='counter']");
@@ -69,7 +81,7 @@ function countCharacters() {
         } else {
             let darkCSS = document.getElementById("darkCSS");
             if (darkCSS == null) {
-                spans[i].style.color = "black";
+                spans[i].style.color = "green";
             } else {
                 spans[i].style.color = "white";
             }
@@ -127,7 +139,7 @@ async function openAI_API_Completions() {
             console.error("ERROR: " + error);
         }
     } else {
-        await typeSentence("Please enter a prompt and select an engine", responseElem);
+        await typeSentence("Insira um texte e selecione um mecanismo", responseElem);
     }
 }
 
@@ -249,7 +261,7 @@ This function is typically used to create a typing effect on the page and can be
 async function typeSentence(sentence, elementReference, data, isReceipt = false, delay = 30) {
     elementReference.innerText = "";
     if (sentence === "HTTP ERROR: 401") {
-        sentence += " — Please make sure that your Open AI API Key has been set properly.";
+        sentence += " — Certifique-se de que sua chave de API Open AI foi definida corretamente.";
     }
     const letters = sentence.split("");
     //let delay = 30;
@@ -302,7 +314,7 @@ function createReceipt(json) {
     let promptTokens = json.usage.prompt_tokens;
     let completionTokens = json.usage.completion_tokens;
     let totalTokens = json.usage.total_tokens;
-    return "<hr/><div><span>" + model + " </span><span style='font-family: Poppins; font-weight: bolder;'>RECEIPT</span></div><br/><div style='font-family: Poppins'>Total Tokens: <span style='font-family: Orbitron'>" + totalTokens +
+    return "<hr/><div><span>" + model + " </span><span style='font-family: ; font-weight: bolder;'>RECEIPT</span></div><br/><div style='font-family: Poppins'>Total Tokens: <span style='font-family: Orbitron'>" + totalTokens +
         "</span></div><br/>$" + calculateCost(json.model, totalTokens);
 }
 
@@ -397,7 +409,7 @@ This function is typically called on page load to apply the appropriate styleshe
 /*
 function getStylesheet() {
     const CSS_LIGHT = "<link id='lightCSS' rel='stylesheet' href='./light.css' type='text/css'>";
-    const CSS_DARK = "<link id='darkCSS' rel='stylesheet' href='./dark.css' type='text/css'>";
+    const CSS_DARK = "<link id='darkCSS' rel='stylesheet' href='./chat.css' type='text/css'>";
     let timeColor = getTimeColor();
     if (timeColor === "light") {
         document.write(CSS_LIGHT);
@@ -443,7 +455,7 @@ function switchStylesheet() {
 
     if (darkCSS == null) {
         document.getElementById("lightCSS").remove();
-        setSheet("darkCSS", "./dark.css");
+        setSheet("darkCSS", "./chat.css");
         newColor = "dark";
     } else if (lightCSS == null) {
         document.getElementById("darkCSS").remove();
