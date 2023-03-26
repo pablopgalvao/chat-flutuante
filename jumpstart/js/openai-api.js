@@ -15,7 +15,7 @@ const MIN_CHARS = 0;
 let promptSpan, charSpan;
 
 //Get the Light or Dark stylesheet depending on time of day.
-getStylesheet();
+//getStylesheet();
 
 /*
 This code is listening for when the DOM (Document Object Model) has finished loading, and then it performs several actions.
@@ -394,6 +394,7 @@ If the text color is black, it means it's daytime and writes the CSS_LIGHT link 
 This way, the page will have a light theme during the day and a dark theme during the night.
 This function is typically called on page load to apply the appropriate stylesheet to the page.
  */
+/*
 function getStylesheet() {
     const CSS_LIGHT = "<link id='lightCSS' rel='stylesheet' href='./light.css' type='text/css'>";
     const CSS_DARK = "<link id='darkCSS' rel='stylesheet' href='./dark.css' type='text/css'>";
@@ -405,7 +406,7 @@ function getStylesheet() {
     }
     setGitHubImageAndLogo(timeColor);
 }
-
+*/
 /*
 This function takes in a parameter "timeColor" and uses it to determine the source of the image for the HTML element with the ID "gh-img".
 If "timeColor" is equal to "dark", the source of the image is set to "../images/github-mark-white.png", and if it's not, the source is set to "../images/github-mark.png".
