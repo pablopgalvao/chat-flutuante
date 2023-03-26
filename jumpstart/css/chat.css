@@ -7,8 +7,10 @@ It also styles various other elements such as headings, paragraphs, unordered li
 select elements, tables, span elements, #counter, #header, and #response, and #receipt.
 It also positions the #header element as sticky and sets the width and text-align of the child elements of the .headerContainer class.
  */
+/*
 @import url('https://fonts.googleapis.com/css?family=Orbitron');
 @import url('https://fonts.googleapis.com/css?family=Poppins');
+*/
 /*
 html {
     font-family: "Poppins";
@@ -28,7 +30,7 @@ h1, h2, h3, h4, h5, h6 {
 p, ul, ol {
     margin-bottom: 1em;
     color: #fff;
-    font-family: "Poppinss";
+    /*font-family: "Poppinss";*/
 }
 /*
 button {
@@ -61,7 +63,7 @@ button[name="run"] {
 }
 
 button[name="clear"] {
-    font-family: "Poppins";
+    /*font-family: "Poppins";*/
     background-color: black;
     border: none;
     color: white;
@@ -105,7 +107,7 @@ span[name="example"] {
 
 .textarea {
     border: 1px solid #ccc;
-    font-family: "Poppins";
+    /*font-family: "Poppins";*/
     color: white;
     font-size: initial;
     padding: 1px 6px;
@@ -118,13 +120,13 @@ span[name="example"] {
 }
 
 .textarea[contenteditable]:empty::before {
-    font-family: "Poppins";
+    /*font-family: "Poppins";*/
     content: "Digite sua solicitação AQUI";
     color: gray;
 }
 
 span[name="counter"] {
-    font-family: "Orbitron";
+    /*font-family: "Orbitron";*/
     color: white;
 }
 
@@ -140,7 +142,7 @@ span[name="counter"] {
 }
 
 #characters {
-    font-family: Poppins;
+    /*font-family: Poppins;*/
     font-size: 0.75em;
     color: white;
 }
@@ -188,7 +190,7 @@ span[name="counter"] {
     color: white;
     font-size: 0.9em;
     text-align: right;
-    font-family: "Orbitron";
+    /*font-family: "Orbitron";*/
 }
 
 #logo {
