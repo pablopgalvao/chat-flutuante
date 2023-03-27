@@ -37,8 +37,10 @@
     
           <label><b>CHAVE SECRETA</b></label>
           <div class="chave">
-            <input id="key" name="key" type="password" placeholder="Entre com a sua chave" required>
-            <input class="modalbtn" type="submit" value="Alterar" />
+            <input id="key" name="key" type="text" placeholder="Entre com a sua chave" required>
+            <!--<input class="modalbtn" type="submit" value="Alterar" />-->
+            <button type="save" onclick="salvar()">Alterar</button>
+
           </div>
               <select id="engines">
                 <option value="text-davinci-003">text-davinci-003 ($.02 por 750 palavras)</option>
