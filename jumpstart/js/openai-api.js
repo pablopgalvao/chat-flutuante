@@ -7,16 +7,16 @@ O código abaixo define uma constante API_KEY que é igual ao valor salvo em loc
 */
 
 function salvar() {
-    const keyform = document.querySelector("#key");
-    localStorage.setItem("openAI", keyform.value);
-    keyform.addEventListener("keyform", (e) => {
+    const keyup = document.querySelector("#key");
+    localStorage.setItem("openAI", keyup.value);
+    keyup.addEventListener("keyup", (e) => {
         localStorage.setItem("openAI", e.target.value);
     });
     return localStorage.getItem("openAI");
 }
 
-    const API_KEY = localStorage.getItem("openAI") || "Não há chave aqui!";
-    console.log("keyform2: " + API_KEY);
+   const API_KEY = localStorage.getItem("openAI") || "Não há chave aqui!";
+   console.log("keyup2: " + API_KEY);
 
 const MIN_CHARS = 0;
 let promptSpan, charSpan;
@@ -51,9 +51,10 @@ document.addEventListener("DOMContentLoaded", function () {
         enginesList.value = localStorage.getItem(OPENAI_API_ENGINE);
     }
 
+    /*
     typeSentence("Olá, como posso ajudar?", promptSpan, '', false, 100)
         .then(afterTyping => promptSpan.innerHTML = "");
-
+    */
 });
 
 /*
@@ -110,7 +111,6 @@ async function openAI_API_Completions() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    //'Authorization': 'Bearer ' + API_KEY
                     'Authorization': 'Bearer ' +  API_KEY
                 },
                 body: JSON.stringify({
