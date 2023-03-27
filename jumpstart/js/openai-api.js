@@ -4,17 +4,34 @@
    // console.log(keyOpen)
     //alert(keyOpen)
     //TODO 2a: RUN THE FOLLOWING COMMAND IN YOUR DEVELOPER CONSOLE FIRST:
-    const keyform = document.querySelector("#mdlcontainer");
-        keyform.addEventListener("submit", (e) => {
-            e.preventDefault();
-        
-            const keyinput = document.querySelector("#key");
-            localStorage.setItem("openAI", keyinput.value);
-        });
-        
-    const API_KEY = localStorage.getItem("openAI");
 
-    alert(API_KEY + "\n\n Cheguei aqui!")
+    function salvar(){
+        const keyform = document.querySelector("#mdlcontainer");
+            keyform.addEventListener("submit", (e) => {
+                e.preventDefault();
+            
+                const keyinput = document.querySelector("#key");
+                localStorage.setItem("openAI", keyinput.value);
+                keyinput.value = ""
+                document.getElementById('mdl').style.display='none'
+                let API_KEY = localStorage.getItem("openAI");
+                /*
+                this.getAPIkey = function() {
+                    return API_KEY
+                }
+                this.setAPIkey = function(ap){
+                    API_KEY = ap;
+                }
+                */
+
+                //myFunction()
+                console.log("apiKEY: " + localStorage.openAI)
+                //console.log("keyform: " + APIKEY);
+            });
+    }    
+    //const API_KEY = localStorage.getItem("openAI");
+    
+    console.log("keyform2: " + localStorage.openAI);
 
 //TODO 2a: RUN THE FOLLOWING COMMAND IN YOUR DEVELOPER CONSOLE FIRST:
 //         localStorage.setItem("openAI", "YOUR_OPENAI_API_KEY");
@@ -115,7 +132,8 @@ async function openAI_API_Completions() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + API_KEY
+                    //'Authorization': 'Bearer ' + API_KEY
+                    'Authorization': 'Bearer ' +  API_KEY2
                 },
                 body: JSON.stringify({
                     'model': engine,
@@ -126,7 +144,9 @@ async function openAI_API_Completions() {
                     'frequency_penalty': 1.2,
                     'presence_penalty': 0
                 })
+                
             });
+            console.log("openAI_API_Completions: " + API_KEY2);
 
             if (!response.ok) {
                 console.error("HTTP ERROR: " + response.status + "\n" + response.statusText);
