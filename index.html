@@ -24,6 +24,8 @@
     <script src="jumpstart/js/openai-api.js" defer></script>
   </head>
   <body>
+
+    <!-- MODAL CHAVE + VERSÃO OPENAI-->
     <button class="modalbtn" onclick="document.getElementById('mdl').style.display='block'" style="width:auto;">CHAVE OPENAI</button>
     
     <div id="mdl" class="modal">
@@ -38,7 +40,7 @@
           <label><b>CHAVE SECRETA</b></label>
           <div class="chave">
             <input id="key" name="key" type="text" placeholder="Entre com a sua chave" required>
-            <a href="https://platform.openai.com/account/api-keys"></a>
+            <a href="https://platform.openai.com/account/api-keys" target="_blank">Crie sua chave</a>
             <button type="save" onclick="salvar()">Alterar</button>
 
           </div>
