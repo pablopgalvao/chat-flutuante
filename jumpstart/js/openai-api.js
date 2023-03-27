@@ -1,7 +1,4 @@
-//TODO 1: GET YOUR OPENAI API KEY from https://platform.openai.com/account/api-keys
-
-    //TODO 2a: RUN THE FOLLOWING COMMAND IN YOUR DEVELOPER CONSOLE FIRST:
-
+//TODO 1: Obtenha sua chave da API OpenAI https://platform.openai.com/account/api-keys
 
 /*
 Essa função salva um valor em localStorage com a chave “openAI” e retorna o valor salvo.
@@ -21,13 +18,6 @@ function salvar() {
     const API_KEY = localStorage.getItem("openAI") || "Não há chave aqui!";
     console.log("keyform2: " + API_KEY);
 
-//TODO 2a: RUN THE FOLLOWING COMMAND IN YOUR DEVELOPER CONSOLE FIRST:
-//         localStorage.setItem("openAI", "YOUR_OPENAI_API_KEY");
-//const API_KEY = localStorage.getItem("openAI");
-
-//TODO 2b: OPTIONALLY, YOU CAN DELETE THE PREVIOUS LINE AND HARD-CODE YOUR API KEY WITH:
-//const API_KEY = "YOUR_OPENAI_API_KEY";
-
 const MIN_CHARS = 0;
 let promptSpan, charSpan;
 
@@ -35,12 +25,12 @@ let promptSpan, charSpan;
 //getStylesheet();
 
 /*
-This code is listening for when the DOM (Document Object Model) has finished loading, and then it performs several actions.
-It assigns two variables, "promptSpan" and "charSpan", to elements on the page by their id.
-Then it adds an event listener to "promptSpan" that listens for input and runs the "countCharacters" function.
-It also sets the inner text of "charSpan" to the value of "MIN_CHARS", which is assumed to be a constant, and it converts that value to a string.
-It also sets up an event listener on a select element with id "engines" to store the selected engine in the browser's local storage when the selection changes.
-And retrieves the value of the selected engine from the local storage when the page refreshes.
+Esse código está esperando quando o DOM (Document Object Model) termina de carregar e, em seguida, executa várias ações.
+Ele atribui duas variáveis, "promptSpan" e "charSpan", aos elementos na página por seu id.
+Em seguida, ele adiciona um ouvinte de evento a "promptSpan" que escuta a entrada e executa a função "countCharacters".
+Ele também define o texto interno de "charSpan" para o valor de "MIN_CHARS", que é considerado uma constante e converte esse valor em uma string.
+Ele também configura um ouvinte de evento em um elemento select com id "engines" para armazenar o mecanismo selecionado no armazenamento local do navegador quando a seleção é alterada.
+E recupera o valor do mecanismo selecionado do armazenamento local quando a página é atualizada.
 */
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -67,12 +57,12 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /*
-This function is counting the number of characters entered in the "promptSpan" element,
-and then updating all elements with the "counter" attribute to reflect the number of characters entered.
-If the number of characters entered is greater than 280 (the Twitter character limit),
-the text color of all "counter" elements is set to red. If the number of characters entered is less than or equal to 280,
-the text color of all "counter" elements is set to black if no dark css is found otherwise it's set to white.
-Finally, it sets the inner text of "charSpan" to the number of characters entered.
+Esta função está contando o número de caracteres inseridos no elemento "promptSpan",
+e, em seguida, atualizando todos os elementos com o atributo "contador" para refletir o número de caracteres inseridos.
+Se o número de caracteres digitado for maior que 280 (o limite de caracteres do Twitter),
+a cor do texto de todos os elementos "contadores" é definida como vermelha. Se o número de caracteres inseridos for menor ou igual a 280,
+a cor do texto de todos os elementos "contadores" é definida como preta se nenhum css escuro for encontrado, caso contrário, é definido como branco.
+Por fim, define o texto interno de "charSpan" para o número de caracteres inseridos.
  */
 function countCharacters() {
     //Twitter character limit for reference
@@ -151,60 +141,11 @@ async function openAI_API_Completions() {
     }
 }
 
-//SET TOP EXAMPLES
-const TOP_EXAMPLES = [
-    'Convert movie titles into emoji.\r\nBack to the Future: 👨👴🚗🕒 \r\nBatman: 🤵🦇 \r\nTransformers: 🚗🤖 \r\nStar Wars:',
-    'Decide whether a Tweet\'s sentiment is positive, neutral, or negative\r\nTweet: "I loved the new Batman movie!"\r\nSentiment:',
-    'Translate the following into Spanish:\r\nIs Artificial Intelligence the Future?',
-    'Correct this to standard English:\r\nI be not wantin any satisfaction',
-    'The OpenAI API can be applied to virtually any task that involves understanding or generating natural language or code. We offer a spectrum of models with different levels of power suitable for different tasks, as well as the ability to fine-tune your own custom models. These models can be used for everything from content generation to semantic search and classification.\r\nTl;dr',
-];
-
 /*
-This function is setting an example prompt based on the provided index by updating the textContent of the 'prompt' element with the example from the TOP_EXAMPLES array specified by the exampleIndex parameter.
-It first clears the previous prompt by calling the clearAll() function.
-Then it updates the textContent of the 'prompt' element with the example from the TOP_EXAMPLES array specified by the exampleIndex parameter.
-Finally, it calls the countCharacters() function to update the character count.
- */
-function setExample(exampleIndex) {
-    clearAll();
-    document.getElementById('prompt').textContent = TOP_EXAMPLES[exampleIndex];
-    countCharacters();
-}
-
-/*
-This code is creating an array of examples, each containing an emoji, a title, and an onclick function.
-It then uses a for loop to iterate through the examples array, creating a new "span" element for each example,
-setting the "name", "title", and "onclick" attributes, and setting the innerHTML to the example's emoji.
-The newly created span elements are then appended to the element with the id "topExamples".
-This will create a list of clickable emojis with title and onclick function that are associated with the element with the id "topExamples".
- */
-const topExamples = document.getElementById("topExamples");
-
-/*
-var examples = [
-    { emoji: "&#127916;", title: "Movie to Emoji", onclick: "setExample(0)" },
-    { emoji: "&#128566;", title: "Tweet Sentiment", onclick: "setExample(1)" },
-    { emoji: "&#128483;", title: "Spanish Translator", onclick: "setExample(2)" },
-    { emoji: "&#127891;", title: "Grammar Check", onclick: "setExample(3)" },
-    { emoji: "&#9986;", title: "TL;DR", onclick: "setExample(4)" }
-];
-
-for (var i = 0; i < examples.length; i++) {
-    var example = document.createElement("span");
-    example.setAttribute("name", "example");
-    example.setAttribute("title", examples[i].title);
-    example.setAttribute("onclick", examples[i].onclick);
-    example.innerHTML = examples[i].emoji;
-    topExamples.appendChild(example);
-}
-*/
-
-/*
-This function is clearing all the data on the page, it first clears the textContent of the 'prompt' element and sets it to an empty string.
-Then it calls the countCharacters() function to update the character count.
-Finally, it calls the clearResponseAndReceipt() function to clear the response and receipt data.
-This function is useful to clear all the data on the page when user wants to start fresh.
+Esta função está limpando todos os dados na página, primeiro limpa o textContent do elemento 'prompt' e o define como uma string vazia.
+Em seguida, ele chama a função countCharacters() para atualizar a contagem de caracteres.
+Por fim, ele chama a função clearResponseAndReceipt() para limpar os dados de resposta e recebimento.
+Esta função é útil para limpar todos os dados da página quando o usuário deseja começar do zero.
  */
 function clearAll() {
     document.getElementById('prompt').textContent = '';
@@ -213,8 +154,8 @@ function clearAll() {
 }
 
 /*
-This function is used to clear the response and receipt data on the page, it sets the innerHTML of the elements with ids 'response' and 'receipt' to an empty string.
-This function is typically called when the user wants to clear the previous generated response and receipt from the page.
+Esta função é usada para limpar os dados de resposta e recibo na página, ela define o innerHTML dos elementos com ids 'resposta' e 'recebimento' para uma string vazia.
+Essa função normalmente é chamada quando o usuário deseja limpar a resposta e o recebimento gerados anteriormente da página.
  */
 function clearResponseAndReceipt() {
     document.getElementById('response').innerHTML = '';
@@ -222,11 +163,11 @@ function clearResponseAndReceipt() {
 }
 
 /*
-This function is removing the period(.) from the input json array.
-It does this by iterating over the json array and checking if the element is a period.
-If it is, it removes that element from the array using the splice method.
-It then returns the modified json array.
-This function is useful to remove the period from the end of the sentence to make it a complete sentence.
+Esta função está removendo o período (.) da matriz json de entrada.
+Ele faz isso iterando sobre a matriz json e verificando se o elemento é um ponto.
+Se for, ele remove esse elemento da matriz usando o método splice.
+Em seguida, ele retorna a matriz json modificada.
+Esta função é útil para remover o ponto final da frase para torná-la uma frase completa.
  */
 function removePeriod(json) {
     json.forEach(function (element, index) {
@@ -238,12 +179,12 @@ function removePeriod(json) {
 }
 
 /*
-This function is creating the response by processing the input json object.
-It first creates an empty string variable named response.
-It then calls the removePeriod() function to remove the period from the choices array of the json object.
-It then checks if the choices array has at least one element, and if it does, it assigns the text of the first element of the choices array to the response variable.
-Then it returns the response variable.
-This function is typically used to create a response from the json object returned by the OpenAI API.
+Esta função está criando a resposta processando o objeto json de entrada.
+Ele primeiro cria uma variável de string vazia chamada response.
+Em seguida, ele chama a função removePeriod() para remover o ponto da matriz de opções do objeto json.
+Em seguida, ele verifica se a matriz de opções possui pelo menos um elemento e, se tiver, atribui o texto do primeiro elemento da matriz de opções à variável de resposta.
+Em seguida, ele retorna a variável de resposta.
+Essa função normalmente é usada para criar uma resposta do objeto json retornado pela API OpenAI.
  */
 function createResponse(json) {
     let response = "";
@@ -259,12 +200,12 @@ function createResponse(json) {
 }
 
 /*
-This function is typing out a sentence on the specified element reference.
-It first clears the inner text of the element reference passed as an argument.
-It then splits the sentence into an array of letters and starts a loop that iterates over the letters array.
-Within the loop, it waits for a specified delay (30ms) and then appends the current letter to the element reference.
-Once the loop completes, if the isReceipt is set to true, it calls the createReceipt() function with the data passed as an argument to create a receipt and updates the innerHTML of the element with the id "receipt".
-This function is typically used to create a typing effect on the page and can be used to type out both the response and receipt.
+Esta função está digitando uma frase na referência do elemento especificado.
+Ele primeiro limpa o texto interno da referência do elemento passada como um argumento.
+Em seguida, ele divide a frase em uma matriz de letras e inicia um loop que itera sobre a matriz de letras.
+Dentro do loop, ele espera por um atraso especificado (30 ms) e então acrescenta a letra atual à referência do elemento.
+Após a conclusão do loop, se o isReceipt for definido como true, ele chama a função createReceipt() com os dados passados ​​como argumento para criar um recibo e atualiza o innerHTML do elemento com o id "receipt".
+Essa função é normalmente usada para criar um efeito de digitação na página e pode ser usada para digitar a resposta e o recibo.
  */
 async function typeSentence(sentence, elementReference, data, isReceipt = false, delay = 30) {
     elementReference.innerText = "";
@@ -288,21 +229,21 @@ async function typeSentence(sentence, elementReference, data, isReceipt = false,
 }
 
 /*
-This function is a helper function that returns a promise that resolves after a specified number of milliseconds.
-It takes one parameter, "ms", which is the number of milliseconds to wait before resolving the promise.
-This function is typically used in conjunction with the await keyword to pause the execution of a function for a certain amount of time.
-The returned promise can be awaited and will resolve after the specified number of milliseconds, allowing for a delay in the execution of the calling function.
+Esta função é uma função auxiliar que retorna uma promessa que resolve após um número especificado de milissegundos.
+Leva um parâmetro, "ms", que é o número de milissegundos a esperar antes de resolver a promessa.
+Essa função é normalmente usada em conjunto com a palavra-chave await para pausar a execução de uma função por um determinado período de tempo.
+A promessa retornada pode ser aguardada e será resolvida após o número especificado de milissegundos, permitindo um atraso na execução da função de chamada.
  */
 function waitForMs(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 /*
-This function creates a receipt of the data provided by the json object.
-It first commented out the code that creates a table that includes various details such as Completion ID, Object Type, Prompted At, Engine Used, Prompt Tokens, Completion Tokens, Total Tokens, and Total Cost.
-It utilizes the setRow() function to create table rows and convertEpochToDateTime() and calculateCost() functions to format the data.
-Now it returns the total cost of the request, it uses the calculateCost() function to calculate the cost of the request based on the model and the total_tokens used.
-This function is typically used to create a receipt of the request that can be displayed on the page.
+Esta função cria um recebimento dos dados fornecidos pelo objeto json.
+Ele primeiro comentou o código que cria uma tabela que inclui vários detalhes, como ID de conclusão, tipo de objeto, solicitado em, mecanismo usado, tokens de prompt, tokens de conclusão, tokens totais e custo total.
+Ele utiliza a função setRow() para criar linhas de tabela e as funções convertEpochToDateTime() e calculateCost() para formatar os dados.
+Agora ele retorna o custo total da requisição, usa a função calculateCost() para calcular o custo da requisição com base no modelo e no total_tokens utilizados.
+Essa função normalmente é usada para criar um recibo da solicitação que pode ser exibido na página.
  */
 function createReceipt(json) {
     /*let table = "<table border='1'>";
@@ -327,11 +268,11 @@ function createReceipt(json) {
 }
 
 /*
-This function is used to create a row of a table that displays name and value of the data.
-It takes three parameters: name, value, and setWordCount.
-If setWordCount is set to true, it calculates the approximate number of words based on the assumption that there are 0.75 tokens per word and adds it to the description.
-Then it returns an HTML string that represents a table row containing the name and description.
-This function is typically used by the createReceipt() function to create rows of the receipt table.
+Esta função é usada para criar uma linha de uma tabela que exibe o nome e o valor dos dados.
+Leva três parâmetros: nome, valor e setWordCount.
+Se setWordCount for definido como true, ele calculará o número aproximado de palavras com base na suposição de que há 0,75 tokens por palavra e o adicionará à descrição.
+Em seguida, ele retorna uma string HTML que representa uma linha da tabela contendo o nome e a descrição.
+Esta função é normalmente usada pela função createReceipt() para criar linhas da tabela de recibos.
  */
 function setRow(name, value, setWordCount) {
     let description = value;
@@ -342,14 +283,14 @@ function setRow(name, value, setWordCount) {
 }
 
 /*
-This function is used to calculate the cost of the request based on the engine used and the number of tokens used.
-It takes three parameters: engineName, totalTokens, and wordCount.
-It first sets totalCost to 0 and declares constant variables for the prices per 1000 tokens for each engine.
-Then it calculates the price per token by dividing totalTokens by 1000.
-Next it checks the value of engineName and multiplies the pricePerToken with the corresponding constant variable of the engine and assigns the result to totalCost.
-If the wordCount is set to true, it calculates the approximate number of words based on the assumption that there are 0.75 tokens per word.
-Finally, it returns the total cost with fixed decimal places.
-This function is typically used by the createReceipt() function to calculate the cost of the request.
+Essa função é usada para calcular o custo da solicitação com base no mecanismo usado e no número de tokens usados.
+Leva três parâmetros: engineName, totalTokens e wordCount.
+Ele primeiro define totalCost como 0 e declara variáveis ​​constantes para os preços por 1.000 tokens para cada mecanismo.
+Em seguida, ele calcula o preço por token dividindo totalTokens por 1.000.
+Em seguida, ele verifica o valor de engineName e multiplica o pricePerToken pela variável constante correspondente do mecanismo e atribui o resultado a totalCost.
+Se wordCount for definido como true, ele calculará o número aproximado de palavras com base na suposição de que há 0,75 tokens por palavra.
+Finalmente, ele retorna o custo total com casas decimais fixas.
+Essa função normalmente é usada pela função createReceipt() para calcular o custo da solicitação.
  */
 function calculateCost(engineName, totalTokens, wordCount = false) {
     let totalCost = 0;
@@ -377,11 +318,11 @@ function calculateCost(engineName, totalTokens, wordCount = false) {
 }
 
 /*
-This function is used to convert the provided epoch time in seconds to a human-readable date and time string.
-It takes one parameter, "epoch" which is the time in seconds since the Unix epoch.
-It first creates a new Date object by multiplying the epoch time by 1000 to convert it from seconds to milliseconds.
-Then it returns a string representation of the date and time in the local time zone format using the toLocaleString() method.
-This function is typically used by the createReceipt() function to format the date and time of the request.
+Esta função é usada para converter o tempo de época fornecido em segundos em uma string de data e hora legível por humanos.
+Leva um parâmetro, "epoch" que é o tempo em segundos desde a época do Unix.
+Ele primeiro cria um novo objeto Date multiplicando o tempo da época por 1000 para convertê-lo de segundos em milissegundos.
+Em seguida, ele retorna uma representação de string da data e hora no formato de fuso horário local usando o método toLocaleString().
+Essa função normalmente é usada pela função createReceipt() para formatar a data e a hora da solicitação.
  */
 function convertEpochToDateTime(epoch) {
     let date = new Date(epoch * 1000);
@@ -389,12 +330,12 @@ function convertEpochToDateTime(epoch) {
 }
 
 /*
-This function is used to determine the text color of the time based on the current time of the day.
-It creates a variable "color" and sets it to "dark".
-Then it creates a new Date object and uses the getHours method to get the current hour.
-Then it checks if the current hour is between 6am and 7pm (inclusive) and sets the color variable to "light" if true.
-Finally, it returns the color variable, which will be "dark" if it's nighttime, and "light" if it's daytime.
-This function is typically used to set the text color of the time on the page to be easily readable against the background color.
+Esta função é usada para determinar a cor do texto da hora com base na hora atual do dia.
+Ele cria uma variável "color" e a define como "dark".
+Em seguida, ele cria um novo objeto Date e usa o método getHours para obter a hora atual.
+Em seguida, ele verifica se a hora atual está entre 6h e 19h (inclusive) e define a variável de cor como "clara" se verdadeira.
+Por fim, ele retorna a variável de cor, que será "dark" se for à noite e "light" se for de dia.
+Esta função é normalmente usada para definir a cor do texto da hora na página para ser facilmente legível contra a cor de fundo.
  */
 function getTimeColor() {
     let color = "dark";
@@ -407,12 +348,12 @@ function getTimeColor() {
 }
 
 /*
-This function is used to determine the appropriate stylesheet to use based on the current time of the day.
-It creates two constants, CSS_LIGHT and CSS_DARK, which are the HTML link tags for the light and dark stylesheets.
-Then it calls the getTimeColor() function to determine the text color of the time.
-If the text color is black, it means it's daytime and writes the CSS_LIGHT link tag to the document, otherwise, it writes the CSS_DARK link tag to the document.
-This way, the page will have a light theme during the day and a dark theme during the night.
-This function is typically called on page load to apply the appropriate stylesheet to the page.
+Esta função é usada para determinar a folha de estilo apropriada para usar com base na hora atual do dia.
+Ele cria duas constantes, CSS_LIGHT e CSS_DARK, que são as tags de link HTML para as folhas de estilo claras e escuras.
+Em seguida, chama a função getTimeColor() para determinar a cor do texto da hora.
+Se a cor do texto for preta, significa que é dia e grava a tag do link CSS_LIGHT no documento, caso contrário, ele grava a tag do link CSS_DARK no documento.
+Dessa forma, a página terá um tema claro durante o dia e um tema escuro durante a noite.
+Essa função é normalmente chamada no carregamento da página para aplicar a folha de estilo apropriada à página.
  */
 /*
 function getStylesheet() {
