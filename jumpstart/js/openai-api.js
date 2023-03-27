@@ -1,37 +1,25 @@
-//TODO 1: GET YOUR OPENAI API KEY from https://beta.openai.com/account/api-keys
+//TODO 1: GET YOUR OPENAI API KEY from https://platform.openai.com/account/api-keys
 
-   // var keyOpen = localStorage.info = document.getElementById("key").value;
-   // console.log(keyOpen)
-    //alert(keyOpen)
     //TODO 2a: RUN THE FOLLOWING COMMAND IN YOUR DEVELOPER CONSOLE FIRST:
 
-    function salvar(){
-        const keyform = document.querySelector("#mdlcontainer");
-            keyform.addEventListener("submit", (e) => {
-                e.preventDefault();
-            
-                const keyinput = document.querySelector("#key");
-                localStorage.setItem("openAI", keyinput.value);
-                keyinput.value = ""
-                document.getElementById('mdl').style.display='none'
-                let API_KEY = localStorage.getItem("openAI");
-                /*
-                this.getAPIkey = function() {
-                    return API_KEY
-                }
-                this.setAPIkey = function(ap){
-                    API_KEY = ap;
-                }
-                */
 
-                //myFunction()
-                console.log("apiKEY: " + localStorage.openAI)
-                //console.log("keyform: " + APIKEY);
-            });
-    }    
-    //const API_KEY = localStorage.getItem("openAI");
-    
-    console.log("keyform2: " + localStorage.openAI);
+/*
+Essa função salva um valor em localStorage com a chave “openAI” e retorna o valor salvo.
+Ela também adiciona um listener de evento para o elemento com id “key” que atualiza o valor salvo toda vez que o valor do elemento é alterado .
+O código abaixo define uma constante API_KEY que é igual ao valor salvo em localStorage com a chave “openAI” ou “Não há chave aqui!” caso não haja valor salvo . 
+*/
+
+function salvar() {
+    const keyform = document.querySelector("#key");
+    localStorage.setItem("openAI", keyform.value);
+    keyform.addEventListener("keyform", (e) => {
+        localStorage.setItem("openAI", e.target.value);
+    });
+    return localStorage.getItem("openAI");
+}
+
+    const API_KEY = localStorage.getItem("openAI") || "Não há chave aqui!";
+    console.log("keyform2: " + API_KEY);
 
 //TODO 2a: RUN THE FOLLOWING COMMAND IN YOUR DEVELOPER CONSOLE FIRST:
 //         localStorage.setItem("openAI", "YOUR_OPENAI_API_KEY");
@@ -133,7 +121,7 @@ async function openAI_API_Completions() {
                 headers: {
                     'Content-Type': 'application/json',
                     //'Authorization': 'Bearer ' + API_KEY
-                    'Authorization': 'Bearer ' +  API_KEY2
+                    'Authorization': 'Bearer ' +  API_KEY
                 },
                 body: JSON.stringify({
                     'model': engine,
@@ -146,7 +134,7 @@ async function openAI_API_Completions() {
                 })
                 
             });
-            console.log("openAI_API_Completions: " + API_KEY2);
+            console.log("openAI_API_Completions: " + API_KEY);
 
             if (!response.ok) {
                 console.error("HTTP ERROR: " + response.status + "\n" + response.statusText);
