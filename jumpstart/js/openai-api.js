@@ -8,18 +8,18 @@ O código abaixo define uma constante API_KEY que é igual ao valor salvo em loc
 
 function updateKey() {
     const keyup = document.querySelector("#key") || "Não há chave aqui!";
-    localStorage.setItem("openAI", keyup.value);
-    
-    keyup.addEventListener("keyup", (e) => {
-        localStorage.setItem("openAI", e.target.value);
-    });
-    //keyup.value = '';
-    
+    localStorage.setItem("openAI", keyup.value);    
     var key = localStorage.getItem("openAI");
-
-    console.log(key)
-    return key;
+    update()
+    keyup.value = '';
+    document.getElementById('mdl').style.display='none';
 }
+
+function update(){
+    var API_KEY = localStorage.getItem("openAI");
+    console.log ("UPDATE KEY: " + API_KEY);
+    return API_KEY;
+ }
 
 const MIN_CHARS = 0;
 let promptSpan, charSpan;
@@ -115,7 +115,7 @@ async function openAI_API_Completions() {
                 headers: {
                     'Content-Type': 'application/json',
                     //'Authorization': 'Bearer ' +  API_KEY
-                    'Authorization': 'Bearer ' +  updateKey()
+                    'Authorization': 'Bearer ' +  update()
                 },
                 body: JSON.stringify({
                     'model': engine,
