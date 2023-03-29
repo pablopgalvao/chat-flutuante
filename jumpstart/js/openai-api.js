@@ -6,17 +6,20 @@ Ela também adiciona um listener de evento para o elemento com id “key” que 
 O código abaixo define uma constante API_KEY que é igual ao valor salvo em localStorage com a chave “openAI” ou “Não há chave aqui!” caso não haja valor salvo . 
 */
 
-function salvar() {
-    const keyup = document.querySelector("#key");
+function updateKey() {
+    const keyup = document.querySelector("#key") || "Não há chave aqui!";
     localStorage.setItem("openAI", keyup.value);
+    
     keyup.addEventListener("keyup", (e) => {
         localStorage.setItem("openAI", e.target.value);
     });
-    return localStorage.getItem("openAI");
-}
+    //keyup.value = '';
+    
+    var key = localStorage.getItem("openAI");
 
-   const API_KEY = localStorage.getItem("openAI") || "Não há chave aqui!";
-   console.log("keyup2: " + API_KEY);
+    console.log(key)
+    return key;
+}
 
 const MIN_CHARS = 0;
 let promptSpan, charSpan;
@@ -111,7 +114,8 @@ async function openAI_API_Completions() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' +  API_KEY
+                    //'Authorization': 'Bearer ' +  API_KEY
+                    'Authorization': 'Bearer ' +  updateKey()
                 },
                 body: JSON.stringify({
                     'model': engine,
@@ -124,7 +128,6 @@ async function openAI_API_Completions() {
                 })
                 
             });
-            console.log("openAI_API_Completions: " + API_KEY);
 
             if (!response.ok) {
                 console.error("HTTP ERROR: " + response.status + "\n" + response.statusText);
